@@ -1,4 +1,4 @@
 #include "wheel.h"
-int* wheel::getWheel() {
-	return values;
+int wheel::getWheel() {
+	return* values;
 }

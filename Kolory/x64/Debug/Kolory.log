@@ -1,5 +1,4 @@
 ﻿  GameMaster.cpp
-C:\Users\dark2\Documents\GitHub\Kolory_BCKUP\Kolory\GameMaster.cpp(3,12): warning C4244: "argument": konwersja z "time_t" do "unsigned int", możliwa utrata danych
-C:\Users\dark2\Documents\GitHub\Kolory_BCKUP\Kolory\GameMaster.cpp(67,25): warning C4805: "==": niebezpieczne połączenie typu "int" oraz typu "bool" w operacji
-C:\Users\dark2\Documents\GitHub\Kolory_BCKUP\Kolory\GameMaster.cpp(149,30): warning C4267: "inicjowanie": konwersja z "size_t" do "int", możliwa utrata danych
-  Kolory.vcxproj -> C:\Users\dark2\Documents\GitHub\Kolory_BCKUP\x64\Debug\Kolory.exe
+C:\Users\dark2\Documents\GitHub\Kolo_Fortuny\Kolory\GameMaster.cpp(3,12): warning C4244: "argument": konwersja z "time_t" do "unsigned int", możliwa utrata danych
+C:\Users\dark2\Documents\GitHub\Kolo_Fortuny\Kolory\GameMaster.cpp(151,30): warning C4267: "inicjowanie": konwersja z "size_t" do "int", możliwa utrata danych
+  Kolory.vcxproj -> C:\Users\dark2\Documents\GitHub\Kolo_Fortuny\x64\Debug\Kolory.exe

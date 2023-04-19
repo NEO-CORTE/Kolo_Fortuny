@@ -1,19 +1,19 @@
 #include "GameMaster.h"
 void GameMaster::GameControl() {
 	srand(time(NULL));
+	setlocale(LC_CTYPE, "pl_PL");
 	GameMaster::getCrosswordsFF();
 	players[0].alterName("Player 1");
 	players[1].alterName("Player 2");
 	players[2].alterName("Player 3");
 	string crossword, trial, result;
 	char singleLetter, choice;
-	int sum = 0, guessed = 0, are_consonants = 0, amount = 0, queue = 0;
-	wheel tmpWheel;
-	int* board = tmpWheel.getWheel();
+	int rng = 0, sum = 0, guessed = 0, are_consonants = 0, amount = 0, queue = 0;
+	int board[] = {-1, 0, 100, 200, 100, 200, 100, 200, 500, 500, 1000, 1000, 1500, 2000, 3000, 5000};
 	GameMaster::crosswordRNGmask();
-
-
+	
 	do {
+		amount = 0;
 		GameMaster::printCrossMask();
 		are_consonants = 0;
 		amount = 0;
@@ -48,8 +48,10 @@ void GameMaster::GameControl() {
 				cout << endl << " <---------- WRONG GUESS ----------> " << endl;
 				continue;
 			}
+		}
+		else {
 			result = "";
-			int rng = rand() % 15;
+			rng = rand() % 15;
 			if (board[rng] == 0) {
 				result = "Turn Loss";
 			}
@@ -64,7 +66,7 @@ void GameMaster::GameControl() {
 				amount = board[rng];
 			}
 
-			if (board[rng] == (0 || -1)) {
+			if ((board[rng] == 0) || (board[rng] == -1)) {
 				if (board[rng] == -1) {
 					players[queue].alterMoney(0);
 				}
@@ -82,34 +84,34 @@ void GameMaster::GameControl() {
 			else {
 				cout << "Consonant";
 			}
-			cout << endl;
-			for (int i = 0; i < mainCrossword.size(); i++) {
-				if ((mainCrossword[i] == singleLetter) && (mask[i] == 1)) {
-					mask[i] = 0;
-					guessed++;
-				}
-			}
-			if (guessed) {
-				cout << "You guessed right";
-				players[queue].alterMoney(players->getPlayer_Money() + amount * guessed);
-
-				cout << endl << players[queue].getPlayer_Name() << "\033[1;32m " << players[queue].getPlayer_Money() << "\033[0m";
-			}
-			else {
-				cout << "You guessed wrond";
-				queue = (queue + 1) % 3;
-				cout << "<------------------------------>" << endl;
-				sum = 1;
-				continue;
-			}
-			cout << endl;
-
-			sum = 0;
-			for (int i = 0; i < mainCrossword.size(); i++) {
-				sum += mask[i];
+		}
+		cout << endl;
+		for (int i = 0; i < mainCrossword.size(); i++) {
+			if ((mainCrossword[i] == singleLetter) && (mask[i] == 1)) {
+				mask[i] = 0;
+				guessed++;
 			}
 		}
+		if (guessed) {
+			cout << "You guessed right";
+			players[queue].alterMoney(players[queue].getPlayer_Money() + amount * guessed);
 
+			cout << endl << players[queue].getPlayer_Name() << "\033[1;32m " << players[queue].getPlayer_Money() << "\033[0m";
+		}
+		else {
+			cout << "You guessed wrong";
+			queue = (queue + 1) % 3;
+			cout << "<------------------------------>" << endl;
+			sum = 1;
+			continue;
+		}
+		cout << endl;
+
+		sum = 0;
+		for (int i = 0; i < mainCrossword.size(); i++) {
+			sum += mask[i];
+		}
+		amount = 0;
 	} while (sum);
 
 	cout << "Well Done";
