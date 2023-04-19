@@ -9,7 +9,8 @@ void GameMaster::GameControl() {
 	string crossword, trial, result;
 	char singleLetter, choice;
 	int rng = 0, sum = 0, guessed = 0, are_consonants = 0, amount = 0, queue = 0;
-	int board[] = {-1, 0, 100, 200, 100, 200, 100, 200, 500, 500, 1000, 1000, 1500, 2000, 3000, 5000};
+	wheel tmpWheel;
+	int* board = tmpWheel.getWheel();
 	GameMaster::crosswordRNGmask();
 	
 	do {
