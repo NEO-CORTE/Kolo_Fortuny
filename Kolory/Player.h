@@ -10,9 +10,21 @@ using namespace std;
 class Player {
 private:
 	string name;
-	int money;
-	int wallet;
+	int money = 0;
+	int wallet = 0;
 public:
+	//friend inline bool comparePlayers(Player* gracz1, Player* gracz2);
+	friend istream& operator >> (istream& is, Player& gracz) {
+		cout << "Podaj imie:" << endl;
+		is >> gracz.name;
+		cout << endl;
+		return is;
+	}
+
+	friend ostream& operator << (ostream& os, Player* gracz) {
+		os << "Imie: \033[1;32m" << gracz->name << "\033[0m\t" << "Pieniadze: \033[1;31m" << gracz->money << "\033[0m" << endl;
+		return os;
+	}
 	// Alteration
 
 	void alterName(string n);
@@ -26,3 +38,9 @@ public:
 	int getPlayer_Money();
 };
 
+// Compare the players
+//inline bool comparePlayers(Player* gracz1, Player* gracz2) {
+//	if (&gracz1->wallet != &gracz2->wallet) {
+//		return &gracz1->wallet > &gracz2->wallet;
+//	}
+//}

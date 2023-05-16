@@ -1,7 +1,7 @@
 ﻿  GameMaster.cpp
-C:\Users\dark2\Documents\GitHub\Kolo_Fortuny\Kolory\GameMaster.cpp(3,12): warning C4244: "argument": konwersja z "time_t" do "unsigned int", możliwa utrata danych
-C:\Users\dark2\Documents\GitHub\Kolo_Fortuny\Kolory\GameMaster.cpp(152,30): warning C4267: "inicjowanie": konwersja z "size_t" do "int", możliwa utrata danych
+C:\Users\dark2\Documents\GitHub\Kolo_Fortuny\Kolory\GameMaster.cpp(4,12): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+C:\Users\dark2\Documents\GitHub\Kolo_Fortuny\Kolory\GameMaster.cpp(165,30): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
   Kolory.cpp
-  wheel.cpp
-  Generowanie kodu...
+  Player.cpp
+  Generating Code...
   Kolory.vcxproj -> C:\Users\dark2\Documents\GitHub\Kolo_Fortuny\x64\Debug\Kolory.exe

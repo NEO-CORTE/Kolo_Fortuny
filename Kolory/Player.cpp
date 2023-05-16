@@ -1,3 +1,4 @@
+#pragma once
 #include "Player.h"
 
 // Alter the name of player
@@ -29,3 +30,4 @@ int Player::getPlayer_Wallet() {
 int Player::getPlayer_Money() {
 	return money;
 }
+

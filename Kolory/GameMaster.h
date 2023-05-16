@@ -1,10 +1,11 @@
 #pragma once
 #include "Player.h"
 #include "wheel.h"
+#include <algorithm>
 class GameMaster
 {
 private:
-	Player players[3];
+	vector<Player> gracze;
 	vector<string>crosswords;
 	string mainCrossword;
 	int mask[100];

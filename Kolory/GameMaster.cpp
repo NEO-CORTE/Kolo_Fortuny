@@ -1,17 +1,26 @@
+#pragma once
 #include "GameMaster.h"
 void GameMaster::GameControl() {
 	srand(time(NULL));
 	setlocale(LC_CTYPE, "pl_PL");
 	GameMaster::getCrosswordsFF();
-	players[0].alterName("Player 1");
-	players[1].alterName("Player 2");
-	players[2].alterName("Player 3");
+	Player gracz1;
+	Player gracz2;
+	Player gracz3;
+	cin >> gracz1;
+	cin >> gracz2;
+	cin >> gracz3;
+	gracze.push_back(gracz1);
+	gracze.push_back(gracz2);
+	gracze.push_back(gracz3);
 	string crossword, trial, result;
 	char singleLetter, choice;
 	int rng = 0, sum = 0, guessed = 0, are_consonants = 0, amount = 0, queue = 0;
 	wheel tmpWheel;
 	int* board = tmpWheel.getWheel();
 	GameMaster::crosswordRNGmask();
+
+	cout << tmpWheel;
 	
 	do {
 		amount = 0;
@@ -40,7 +49,7 @@ void GameMaster::GameControl() {
 			}
 			if (mainCrossword == trial) {
 				cout << endl << " <---------- WIN ----------> " << endl;
-				players[queue].alterMoney(players[queue].getPlayer_Wallet() + players[queue].getPlayer_Money());
+				gracze[queue].alterMoney(gracze[queue].getPlayer_Wallet() + gracze[queue].getPlayer_Money());
 				break;
 			}
 			else {
@@ -69,14 +78,14 @@ void GameMaster::GameControl() {
 
 			if ((board[rng] == 0) || (board[rng] == -1)) {
 				if (board[rng] == -1) {
-					players[queue].alterMoney(0);
+					gracze[queue].alterMoney(0);
 				}
 				queue = (queue + 1) % 3;
 				sum = 1;
 				cout << endl << "<------------------------------>" << endl;
 				continue;
 			}
-			cout << players[queue].getPlayer_Name() << ": Pass the letter" << endl;
+			cout << gracze[queue].getPlayer_Name() << ": Pass the letter" << endl;
 			singleLetter = GameMaster::LoadChar();
 			guessed = 0;
 			if (GameMaster::isVowel(singleLetter)) {
@@ -95,9 +104,9 @@ void GameMaster::GameControl() {
 		}
 		if (guessed) {
 			cout << "You guessed right";
-			players[queue].alterMoney(players[queue].getPlayer_Money() + amount * guessed);
+			gracze[queue].alterMoney(gracze[queue].getPlayer_Money() + amount * guessed);
 
-			cout << endl << players[queue].getPlayer_Name() << "\033[1;32m " << players[queue].getPlayer_Money() << "\033[0m";
+			cout << endl << gracze[queue].getPlayer_Name() << "\033[1;32m " << gracze[queue].getPlayer_Money() << "\033[0m";
 		}
 		else {
 			cout << "You guessed wrong";
@@ -115,9 +124,13 @@ void GameMaster::GameControl() {
 		amount = 0;
 	} while (sum);
 
-	cout << "Well Done";
+	//sort(gracze.begin(), gracze.end(), comparePlayers);
+	for (auto t : gracze) {
+		cout << &t;
+	}
 	exit(0);
 }
+
 
 void GameMaster::printPlayers_CC(int queue){
 	cout << "\n";
@@ -125,7 +138,7 @@ void GameMaster::printPlayers_CC(int queue){
 		if (i == queue) {
 			cout << "\033[1;34m";
 		}
-		cout << players[i].getPlayer_Name() << "\t" << players[i].getPlayer_Money() << "\n";
+		cout << &gracze[i];
 		cout << "\033[0m";
 	}
 	cout << "\n";
